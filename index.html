@@ -81,6 +81,52 @@
       color: #888;
       margin-bottom: 16px;
     }
+    #modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+    #modal.aktiv { display: flex; }
+    #modalKartya {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 380px;
+      width: 100%;
+    }
+    #modalKartya h2 {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 16px;
+    }
+    #modalElonezet {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 0.9rem;
+      color: #444;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+    }
+    .modalGombok {
+      display: flex;
+      gap: 10px;
+    }
+    .modalGombok button {
+      margin-top: 0;
+      flex: 1;
+    }
+    #modalMegse {
+      background: #e0e0e0;
+      color: #333;
+    }
+    #modalMegse:hover { background: #bdbdbd; }
   </style>
 </head>
 <body>
@@ -114,6 +160,17 @@
 
     <button id="kuldesGomb" disabled>Küldés</button>
     <div id="uzenet"></div>
+  </div>
+
+  <div id="modal">
+    <div id="modalKartya">
+      <h2>Biztosan elküldi a kikérőt?</h2>
+      <div id="modalElonezet"></div>
+      <div class="modalGombok">
+        <button id="modalMegse">Mégsem</button>
+        <button id="modalKuldes">Küldés</button>
+      </div>
+    </div>
   </div>
 
   <script src="https://accounts.google.com/gsi/client" async defer></script>

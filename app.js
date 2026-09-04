@@ -73,28 +73,29 @@ function emailBase64(szoveg) {
     .replace(/=+$/, '');
 }
 
+function modalMutat(szoveg) {
+  document.getElementById('modalElonezet').textContent = szoveg;
+  document.getElementById('modal').classList.add('aktiv');
+}
+
+function modalBezar() {
+  document.getElementById('modal').classList.remove('aktiv');
+}
+
+function validacio() {
+  const datum = document.getElementById('datum').value;
+  if (!datum) { uzenetMutat('Kérlek válassz dátumot!', 'hiba'); return false; }
+  if (!document.getElementById('gyerekNev').value.trim()) { uzenetMutat('Kérlek add meg a gyermek nevét!', 'hiba'); return false; }
+  if (!document.getElementById('osztaly').value.trim()) { uzenetMutat('Kérlek add meg az osztályt!', 'hiba'); return false; }
+  if (!document.getElementById('celEmail').value.trim()) { uzenetMutat('Kérlek add meg az iskola email címét!', 'hiba'); return false; }
+  return true;
+}
+
 async function kuldesEmail() {
   const datum = document.getElementById('datum').value;
   const ora = document.getElementById('ora').value;
   const perc = document.getElementById('perc').value;
-
-  if (!datum) {
-    uzenetMutat('Kérlek válassz dátumot!', 'hiba');
-    return;
-  }
-  if (!document.getElementById('gyerekNev').value.trim()) {
-    uzenetMutat('Kérlek add meg a gyermek nevét!', 'hiba');
-    return;
-  }
-  if (!document.getElementById('osztaly').value.trim()) {
-    uzenetMutat('Kérlek add meg az osztályt!', 'hiba');
-    return;
-  }
-  if (!document.getElementById('celEmail').value.trim()) {
-    uzenetMutat('Kérlek add meg az iskola email címét!', 'hiba');
-    return;
-  }
-
+  modalBezar();
   const gomb = document.getElementById('kuldesGomb');
   gomb.disabled = true;
   gomb.textContent = 'Küldés...';
@@ -163,7 +164,12 @@ function kuldesGombKattint() {
   if (!accessToken) {
     tokenClient.requestAccessToken();
   } else {
-    kuldesEmail();
+    if (!validacio()) return;
+    const datum = document.getElementById('datum').value;
+    const ora = document.getElementById('ora').value;
+    const perc = document.getElementById('perc').value;
+    const elonezet = emailSzoveg(datum, ora, perc) + '\n\n---\nCímzett: ' + document.getElementById('celEmail').value;
+    modalMutat(elonezet);
   }
 }
 
@@ -175,6 +181,9 @@ window.onload = () => {
   ['gyerekNev', 'osztaly', 'celEmail'].forEach(id => {
     document.getElementById(id).addEventListener('change', mentesLocalStorage);
   });
+
+  document.getElementById('modalKuldes').addEventListener('click', kuldesEmail);
+  document.getElementById('modalMegse').addEventListener('click', modalBezar);
 
   const gisVarakozas = setInterval(() => {
     if (typeof google !== 'undefined' && google.accounts) {
