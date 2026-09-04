@@ -1,9 +1,10 @@
 const CLIENT_ID = '1002393104774-nj44opdrl9l7qqcnrd4tq551ppqi0ufr.apps.googleusercontent.com';
-const SCOPES = 'https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.readonly';
+const SCOPES = 'https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/userinfo.profile';
 
 let tokenClient;
 let accessToken = null;
 let bejelentkezettEmail = null;
+let bejelentkezettNev = null;
 
 function initSelectek() {
   const oraSelect = document.getElementById('ora');
@@ -35,7 +36,8 @@ function emailSzoveg(datum, ora, perc) {
   const [ev, ho, nap] = datum.split('-');
   const nev = document.getElementById('gyerekNev').value;
   const keresztnev = nev.split(' ').pop();
-  return `Tisztelt Iskola!\n\nKérem ${keresztnev} elbocsátását ${ev}.${ho}.${nap} ${ora}:${perc}-kor.\n\nÜdvözlettel,\nMegtért Gábor`;
+  const alairas = bejelentkezettNev || 'Megtért Gábor';
+  return `Tisztelt Iskola!\n\nKérem ${keresztnev} elbocsátását ${ev}.${ho}.${nap} ${ora}:${perc}-kor.\n\nÜdvözlettel,\n${alairas}`;
 }
 
 function emailBase64(szoveg) {
@@ -114,12 +116,13 @@ function initGIS() {
         return;
       }
       accessToken = resp.access_token;
-      fetch('https://gmail.googleapis.com/gmail/v1/users/me/profile', {
+      fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
         headers: { 'Authorization': 'Bearer ' + accessToken }
       })
         .then(r => r.json())
         .then(data => {
-          bejelentkezettEmail = data.emailAddress;
+          bejelentkezettEmail = data.email;
+          bejelentkezettNev = data.name;
           document.getElementById('kuldesGomb').disabled = false;
           document.getElementById('bejelentkezve').textContent = 'Bejelentkezve ✓';
           kuldesEmail();
