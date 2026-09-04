@@ -6,6 +6,21 @@ let accessToken = null;
 let bejelentkezettEmail = null;
 let bejelentkezettNev = null;
 
+function mentesLocalStorage() {
+  localStorage.setItem('gyerekNev', document.getElementById('gyerekNev').value);
+  localStorage.setItem('osztaly', document.getElementById('osztaly').value);
+  localStorage.setItem('celEmail', document.getElementById('celEmail').value);
+}
+
+function betoltesLocalStorage() {
+  const gyerekNev = localStorage.getItem('gyerekNev');
+  const osztaly = localStorage.getItem('osztaly');
+  const celEmail = localStorage.getItem('celEmail');
+  if (gyerekNev) document.getElementById('gyerekNev').value = gyerekNev;
+  if (osztaly) document.getElementById('osztaly').value = osztaly;
+  if (celEmail) document.getElementById('celEmail').value = celEmail;
+}
+
 function initSelectek() {
   const oraSelect = document.getElementById('ora');
   for (let i = 7; i <= 18; i++) {
@@ -142,6 +157,11 @@ function kuldesGombKattint() {
 window.onload = () => {
   initSelectek();
   initDatum();
+  betoltesLocalStorage();
+
+  ['gyerekNev', 'osztaly', 'celEmail'].forEach(id => {
+    document.getElementById(id).addEventListener('change', mentesLocalStorage);
+  });
 
   const gisVarakozas = setInterval(() => {
     if (typeof google !== 'undefined' && google.accounts) {
