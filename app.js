@@ -153,7 +153,7 @@ function initGIS() {
           bejelentkezettEmail = data.email;
           bejelentkezettNev = data.name;
           document.getElementById('kuldesGomb').disabled = false;
-          document.getElementById('bejelentkezve').textContent = 'Bejelentkezve ✓';
+          document.getElementById('bejelentkezve').textContent = 'Bejelentkezve: ' + data.name + ' (' + data.email + ')';
         });
     }
   });
