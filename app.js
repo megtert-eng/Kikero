@@ -38,7 +38,7 @@ function emailSzoveg(datum, ora, perc) {
 
 function emailBase64(szoveg) {
   const emailSorok = [
-    'To: mza.ppm@gmail.com',
+    'To: ' + document.getElementById('celEmail').value,
     ...(bejelentkezettEmail ? ['Cc: ' + bejelentkezettEmail] : []),
     'Subject: =?UTF-8?B?' + btoa(unescape(encodeURIComponent('Megtért Márk 3.b'))) + '?=',
     'Content-Type: text/plain; charset=UTF-8',
