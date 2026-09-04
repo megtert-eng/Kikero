@@ -154,7 +154,6 @@ function initGIS() {
           bejelentkezettNev = data.name;
           document.getElementById('kuldesGomb').disabled = false;
           document.getElementById('bejelentkezve').textContent = 'Bejelentkezve ✓';
-          kuldesEmail();
         });
     }
   });
@@ -189,8 +188,8 @@ window.onload = () => {
     if (typeof google !== 'undefined' && google.accounts) {
       clearInterval(gisVarakozas);
       initGIS();
-      document.getElementById('kuldesGomb').disabled = false;
       document.getElementById('kuldesGomb').addEventListener('click', kuldesGombKattint);
+      tokenClient.requestAccessToken();
     }
   }, 100);
 };
