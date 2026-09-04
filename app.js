@@ -139,6 +139,7 @@ function initGIS() {
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
+    prompt: '',
     callback: (resp) => {
       if (resp.error) {
         uzenetMutat('Bejelentkezési hiba: ' + resp.error, 'hiba');
