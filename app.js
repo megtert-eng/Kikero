@@ -153,6 +153,7 @@ function initGIS() {
           bejelentkezettEmail = data.email;
           bejelentkezettNev = data.name;
           document.getElementById('kuldesGomb').disabled = false;
+          document.getElementById('bejelentkezesGomb').style.display = 'none';
           document.getElementById('bejelentkezve').textContent = 'Bejelentkezve: ' + data.name + ' (' + data.email + ')';
         });
     }
@@ -189,7 +190,9 @@ window.onload = () => {
       clearInterval(gisVarakozas);
       initGIS();
       document.getElementById('kuldesGomb').addEventListener('click', kuldesGombKattint);
-      tokenClient.requestAccessToken();
+      document.getElementById('bejelentkezesGomb').addEventListener('click', () => {
+        tokenClient.requestAccessToken();
+      });
     }
   }, 100);
 };
