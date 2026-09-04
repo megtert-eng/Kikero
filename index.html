@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kikérő — Megtért Márk 3.b</title>
+  <title>Eseti kikérő küldő</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -36,7 +36,7 @@
       margin-bottom: 6px;
       margin-top: 16px;
     }
-    input[type="date"], input[type="email"], select {
+    input[type="date"], input[type="email"], input[type="text"], select {
       width: 100%;
       padding: 12px;
       border: 1px solid #ddd;
@@ -84,9 +84,15 @@
 </head>
 <body>
   <div class="card">
-    <h1>Kikérő küldése<br>Megtért Márk 3.b</h1>
+    <h1>Eseti kikérő küldő</h1>
 
     <div id="bejelentkezve"></div>
+
+    <label for="gyerekNev">Gyermek neve</label>
+    <input type="text" id="gyerekNev" value="Megtért Márk">
+
+    <label for="osztaly">Osztály</label>
+    <input type="text" id="osztaly" value="3.b">
 
     <label for="celEmail">Iskola email címe</label>
     <input type="email" id="celEmail" value="esetikikeroveroceiskola@gmail.com">

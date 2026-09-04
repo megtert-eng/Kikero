@@ -33,14 +33,16 @@ function initDatum() {
 
 function emailSzoveg(datum, ora, perc) {
   const [ev, ho, nap] = datum.split('-');
-  return `Tisztelt Iskola!\n\nKérem Márk elbocsátását ${ev}.${ho}.${nap} ${ora}:${perc}-kor.\n\nÜdvözlettel,\nMegtért Gábor`;
+  const nev = document.getElementById('gyerekNev').value;
+  const keresztnev = nev.split(' ').pop();
+  return `Tisztelt Iskola!\n\nKérem ${keresztnev} elbocsátását ${ev}.${ho}.${nap} ${ora}:${perc}-kor.\n\nÜdvözlettel,\nMegtért Gábor`;
 }
 
 function emailBase64(szoveg) {
   const emailSorok = [
     'To: ' + document.getElementById('celEmail').value,
     ...(bejelentkezettEmail ? ['Cc: ' + bejelentkezettEmail] : []),
-    'Subject: =?UTF-8?B?' + btoa(unescape(encodeURIComponent('Megtért Márk 3.b'))) + '?=',
+    'Subject: =?UTF-8?B?' + btoa(unescape(encodeURIComponent(document.getElementById('gyerekNev').value + ' ' + document.getElementById('osztaly').value))) + '?=',
     'Content-Type: text/plain; charset=UTF-8',
     'Content-Transfer-Encoding: base64',
     '',
