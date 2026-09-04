@@ -23,7 +23,7 @@ function betoltesLocalStorage() {
 
 function initSelectek() {
   const oraSelect = document.getElementById('ora');
-  for (let i = 7; i <= 18; i++) {
+  for (let i = 9; i <= 16; i++) {
     const opt = document.createElement('option');
     opt.value = String(i).padStart(2, '0');
     opt.textContent = String(i).padStart(2, '0');
