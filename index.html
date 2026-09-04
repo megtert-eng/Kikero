@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kikérő — Megtért Márk 3.b</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 1.3rem;
+      color: #333;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    label {
+      display: block;
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 6px;
+      margin-top: 16px;
+    }
+    input[type="date"], select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #333;
+      background: white;
+    }
+    .row {
+      display: flex;
+      gap: 12px;
+    }
+    .row > div { flex: 1; }
+    button {
+      width: 100%;
+      padding: 16px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 28px;
+    }
+    button:hover { background: #1b5e20; }
+    button:disabled { background: #aaa; cursor: not-allowed; }
+    #uzenet {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      display: none;
+    }
+    #uzenet.siker { background: #e8f5e9; color: #2e7d32; display: block; }
+    #uzenet.hiba { background: #ffebee; color: #c62828; display: block; }
+    #bejelentkezve {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Kikérő küldése<br>Megtért Márk 3.b</h1>
+
+    <div id="bejelentkezve"></div>
+
+    <label for="datum">Dátum</label>
+    <input type="date" id="datum">
+
+    <div class="row">
+      <div>
+        <label for="ora">Óra</label>
+        <select id="ora"></select>
+      </div>
+      <div>
+        <label for="perc">Perc</label>
+        <select id="perc"></select>
+      </div>
+    </div>
+
+    <button id="kuldesGomb" disabled>Küldés</button>
+    <div id="uzenet"></div>
+  </div>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="app.js"></script>
+</body>
+</html>
