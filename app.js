@@ -27,6 +27,7 @@ function initSelectek() {
     const opt = document.createElement('option');
     opt.value = String(i).padStart(2, '0');
     opt.textContent = String(i).padStart(2, '0');
+    if (i === 12) opt.selected = true;
     oraSelect.appendChild(opt);
   }
 
