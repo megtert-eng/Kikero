@@ -1,5 +1,5 @@
 const CLIENT_ID = '1002393104774-nj44opdrl9l7qqcnrd4tq551ppqi0ufr.apps.googleusercontent.com';
-const SCOPES = 'https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/userinfo.profile';
+const SCOPES = 'https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
 
 let tokenClient;
 let accessToken = null;
