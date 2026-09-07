@@ -155,7 +155,7 @@ function initGIS() {
           bejelentkezettNev = data.name;
           document.getElementById('kuldesGomb').disabled = false;
           document.getElementById('bejelentkezesGomb').style.display = 'none';
-          document.getElementById('bejelentkezve').textContent = 'Bejelentkezve: ' + data.name + ' (' + data.email + ')';
+          document.getElementById('bejelentkezveHeader').textContent = data.name + ' (' + data.email + ')';
         });
     }
   });
